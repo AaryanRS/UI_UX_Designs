@@ -61,6 +61,7 @@ Every design folder contains:
 - [Parker](<Product Web Designs/Parker>)
 - [Flora](<Product Web Designs/Flora>)
 - [CROM](<Product Web Designs/CROM>)
+- [Parris](<Product Web Designs/Parris>)
 - [Reflect](<Product Web Designs/Reflect>)
 - [Kromatik](<Product Web Designs/Kromatik>)
 
