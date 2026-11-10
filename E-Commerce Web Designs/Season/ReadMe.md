@@ -1,7 +1,7 @@
-# Season 04 — Modern Brutalist Luxury Interface
+# Season 
 
 ## 1. Project Overview
-**Season 04** is an avant-garde digital storefront and editorial showcase balancing high-fashion luxury with the structural discipline of architectural brutalism. Built with an asymmetric 12-column grid, persistent analog grain, massive display typography, and stark monochrome lookbook imagery, the interface commands attention through stark proportions, negative space, and electric micro-interactions.
+**Season** is an avant-garde digital storefront and editorial showcase balancing high-fashion luxury with the structural discipline of architectural brutalism. Built with an asymmetric 12-column grid, persistent analog grain, massive display typography, and stark monochrome lookbook imagery, the interface commands attention through stark proportions, negative space, and electric micro-interactions.
 
 ---
 
