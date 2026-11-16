@@ -88,9 +88,9 @@ Every design folder contains:
 |---------|-------|
 | <img src="https://github.com/user-attachments/assets/648356d0-3544-4057-b2af-a11fffb0596b" width="100%" height="70%"> | <img src="https://github.com/user-attachments/assets/ee6fd524-2b96-4ba8-a3bf-10abe214155e" width="100%" height="70%"> |
 
-| Parker | Kronos |
+| Astra | Zenos |
 |-------|--------|
-| <img src="https://github.com/user-attachments/assets/1d46dd58-fdbf-4f27-bb0e-383112db6a0d" width="100%" height="90%"> | <img src="https://github.com/user-attachments/assets/391f01aa-e9b5-4c99-be7c-5cf553aa2b8a" width="100%" height="90%"> |
+| <img src="https://github.com/user-attachments/assets/f1fa958b-35ae-47c7-876c-35bdec0a48ef" width="100%" height="70%"> | <img src="https://github.com/user-attachments/assets/391f01aa-e9b5-4c99-be7c-5cf553aa2b8a" width="100%" height="70%"> |
 
 
 
