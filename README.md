@@ -55,6 +55,7 @@ Every design folder contains:
 - [Architectural](<Service Web Designs/Architectural>)
 - [Silicon](<Service Web Designs/Silicon>)
 - [Astra](<Service Web Designs/Astra>)
+- [Softy](<Service Web Designs/Softy>)
 
 ### 😶‍🌫️ Product Page Designs
 - [Verdant](<Product Web Designs/Verdant>)
