@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Softy — A Digital Living Room</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Reenie+Beanie&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface-variant": "#524342",
+            "on-secondary-fixed": "#161d19",
+            "secondary-fixed": "#dde4dd",
+            "on-tertiary": "#ffffff",
+            "primary-fixed": "#ffdad7",
+            "on-secondary-container": "#5f6661",
+            "inverse-primary": "#fcb4b0",
+            "tertiary-fixed-dim": "#c7c6cc",
+            "surface-dim": "#e1d8d6",
+            "inverse-surface": "#292524",
+            "on-error": "#ffffff",
+            "surface-container": "#f5ecea",
+            "surface-tint": "#874f4c",
+            "outline": "#847372",
+            "error": "#ba1a1a",
+            "secondary": "#59605b",
+            "tertiary-container": "#cac8cf",
+            "on-tertiary-fixed-variant": "#46464c",
+            "background": "#FDFCF8",
+            "on-primary-fixed-variant": "#6b3836",
+            "on-background": "#1e1b1a",
+            "surface-container-low": "#fbf2f0",
+            "inverse-on-surface": "#f8efed",
+            "on-tertiary-fixed": "#1b1b20",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e9e1df",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#360e0d",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#7b4542",
+            "on-surface": "#1e1b1a",
+            "primary-container": "#ffb7b2",
+            "primary": "#874f4c",
+            "surface-container-highest": "#e9e1df",
+            "surface": "#FDFCF8",
+            "surface-container-high": "#efe6e4",
+            "surface-bright": "#FDFCF8",
+            "on-tertiary-container": "#545459",
+            "secondary-container": "#dde4dd",
+            "secondary-fixed-dim": "#c1c8c2",
+            "tertiary": "#5e5e64",
+            "outline-variant": "#d7c2c0",
+            "on-secondary-fixed-variant": "#414844",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#e3e1e8",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed-dim": "#fcb4b0"
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            sans: ["Outfit", "sans-serif"],
+            reenie: ["'Reenie Beanie'", "cursive"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #FDFCF8;
+      color: #1e1b1a;
+      font-family: 'Outfit', sans-serif;
+    }
+    .font-cursive {
+      font-family: 'Reenie Beanie', cursive;
+    }
+  </style>
+</head>
+<body class="bg-[#FDFCF8] text-on-surface antialiased relative min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- Persistent Ambient Noise Grain Texture -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-35 mix-blend-overlay">
+<svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<filter id="noiseFilter">
+<feturbulence basefrequency="0.65" numoctaves="3" stitchtiles="stitch" type="fractalNoise"></feturbulence>
+</filter>
+<rect filter="url(#noiseFilter)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Ambient Blurred Pastel Blobs (#FFE4E1 & #E6E6FA) for Desktop -->
+<div class="fixed -top-32 left-1/4 w-[600px] h-[600px] bg-[#FFE4E1] rounded-full blur-[130px] opacity-60 pointer-events-none -z-10 animate-pulse" style="animation-duration: 9s;"></div>
+<div class="fixed top-80 -right-24 w-[640px] h-[640px] bg-[#E6E6FA] rounded-full blur-[140px] opacity-55 pointer-events-none -z-10"></div>
+<div class="fixed top-[1400px] -left-36 w-[560px] h-[560px] bg-[#E8EFE8] rounded-full blur-[130px] opacity-50 pointer-events-none -z-10"></div>
+<div class="fixed bottom-32 right-1/4 w-[500px] h-[500px] bg-[#FFE4E1] rounded-full blur-[140px] opacity-45 pointer-events-none -z-10"></div>
+<!-- 1. Centered Floating Pill Navigation (max-w-5xl) -->
+<header class="sticky top-6 z-40 px-6 w-full flex justify-center">
+<nav class="w-full max-w-5xl bg-white/80 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_8px_32px_-4px_rgba(41,37,36,0.06)] px-7 py-3 flex items-center justify-between transition-all duration-300">
+<!-- Logo + Brand -->
+<a class="flex items-center gap-3 group" href="#hero">
+<div class="w-7 h-7 rounded-full bg-[#ffb7b2] flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
+<div class="w-2 h-2 rounded-full bg-white shadow-xs"></div>
+</div>
+<span class="font-semibold text-xl tracking-tight text-on-surface">softy</span>
+</a>
+<!-- Desktop Links -->
+<div class="hidden md:flex items-center gap-8 text-[15px] font-medium text-on-surface-variant">
+<a class="hover:text-on-surface transition-colors cursor-pointer" href="#philosophy">Philosophy</a>
+<a class="hover:text-on-surface transition-colors cursor-pointer" href="#scenarios">Rituals</a>
+<a class="hover:text-on-surface transition-colors cursor-pointer" href="#experience">Living Room</a>
+<a class="hover:text-on-surface transition-colors cursor-pointer" href="#stories">Stories</a>
+<a class="hover:text-on-surface transition-colors cursor-pointer" href="#faq">FAQ</a>
+</div>
+<!-- Action Button -->
+<div class="flex items-center gap-3">
+<a class="bg-[#292524] text-white font-medium text-sm px-5 py-2.5 rounded-full shadow-sm hover:bg-black active:scale-95 transition-all" href="#waitlist">
+          Open App
+        </a>
+</div>
+</nav>
+</header>
+<!-- 2. Hero Section (Spacious Desktop) -->
+<section class="relative pt-20 pb-24 px-6 flex flex-col items-center text-center max-w-4xl mx-auto" id="hero">
+<!-- Status Badge -->
+<div class="inline-flex items-center gap-2 bg-[#f5ecea]/80 backdrop-blur-sm px-4 py-1.5 rounded-full text-on-surface-variant text-xs tracking-wider uppercase font-semibold mb-8 border border-black/[0.03]">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>a digital living room</span>
+</div>
+<!-- Massive Outfit Headline -->
+<h1 class="text-5xl lg:text-[68px] font-semibold tracking-[-0.03em] text-on-surface leading-[1.1] max-w-3xl">
+      Feel screen-time turn 
+      <span class="text-primary font-normal font-cursive inline-block transform -rotate-2 text-7xl lg:text-[88px] align-middle px-1">gentle</span> 
+      again.
+    </h1>
+<!-- Subheadline -->
+<p class="text-lg lg:text-xl text-on-surface-variant max-w-2xl mt-6 leading-relaxed font-normal">
+      An intentionally slow, tactile sanctuary designed to quiet digital overstimulation and restore everyday presence.
+    </p>
+<!-- Dual Pill CTA Buttons -->
+<div class="flex flex-row items-center gap-4 mt-10 justify-center">
+<a class="bg-primary-container text-on-primary-container font-medium text-base px-8 py-4 rounded-full shadow-[0_12px_28px_-6px_rgba(255,183,178,0.65)] hover:shadow-[0_16px_32px_-4px_rgba(255,183,178,0.8)] active:scale-95 transition-all text-center flex items-center gap-2" href="#waitlist">
+<span>Begin mindful breathing</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+<a class="bg-white/90 text-on-surface-variant font-medium text-base px-8 py-4 rounded-full shadow-sm hover:bg-white border border-black/[0.04] transition-all text-center" href="#experience">
+        Explore rituals
+      </a>
+</div>
+<!-- Subtle Cursive Footnote -->
+<div class="mt-6 flex items-center gap-1.5 text-secondary">
+<span class="font-cursive text-2xl lg:text-3xl">* no notification counters or guilt trips</span>
+</div>
+</section>
+<!-- 3. Rhythm & Tempo / Daily Scenarios (Generous 3-Column Desktop Grid) -->
+<section class="py-20 px-8 max-w-6xl mx-auto w-full" id="scenarios">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+<div>
+<p class="text-xs uppercase tracking-widest text-secondary font-semibold mb-2">Rhythm &amp; Tempo</p>
+<h2 class="text-3xl lg:text-4xl font-semibold tracking-tight text-on-surface">Designed for full minds</h2>
+</div>
+<p class="text-on-surface-variant text-sm mt-2 md:mt-0 font-cursive text-2xl">
+        built around organic cadences, not notification triggers
+      </p>
+</div>
+<!-- 3 Distinct Scenario Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+<!-- Card 1: 07:15 AM -->
+<div class="group bg-white rounded-3xl p-8 border border-black/[0.04] shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(135,79,76,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-[250px]">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold tracking-wider text-secondary bg-[#f5ecea] px-3.5 py-1.5 rounded-full">07:15 AM</span>
+<div class="w-10 h-10 rounded-full bg-[#ffdad7]/50 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">wb_twilight</span>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-semibold text-on-surface tracking-tight mb-2">Morning fog</h3>
+<p class="text-on-surface-variant text-[15px] leading-relaxed">One mindful breath before incoming messages and feeds arrive.</p>
+</div>
+</div>
+<!-- Card 2: 02:40 PM -->
+<div class="group bg-[#E8EFE8]/70 rounded-3xl p-8 border border-black/[0.03] shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(89,96,91,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-[250px]">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold tracking-wider text-[#414844] bg-white/80 px-3.5 py-1.5 rounded-full">02:40 PM</span>
+<div class="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">spa</span>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-semibold text-[#161d19] tracking-tight mb-2">Screen fatigue</h3>
+<p class="text-[#414844] text-[15px] leading-relaxed">Soft micro-pauses that gently unspool afternoon screen tension.</p>
+</div>
+</div>
+<!-- Card 3: 09:30 PM -->
+<div class="group bg-[#EFEDF4]/70 rounded-3xl p-8 border border-black/[0.03] shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(94,94,100,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-[250px]">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold tracking-wider text-[#46464c] bg-white/80 px-3.5 py-1.5 rounded-full">09:30 PM</span>
+<div class="w-10 h-10 rounded-full bg-white/80 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">water_drop</span>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-semibold text-on-surface tracking-tight mb-2">Bedtime scroll</h3>
+<p class="text-on-surface-variant text-[15px] leading-relaxed">Trade relentless doomscrolling for ambient rain &amp; warm reflection.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Interactive Tactile Sanctuary (Desktop Cascading Three-Mockup Layout) -->
+<section class="py-24 px-6 max-w-6xl mx-auto w-full overflow-hidden" id="experience">
+<div class="text-center mb-16">
+<span class="text-primary font-normal font-cursive text-3xl block mb-1">touch &amp; breathe</span>
+<h2 class="text-3xl lg:text-4xl font-semibold tracking-tight text-on-surface">A sanctuary in your pocket</h2>
+<p class="text-on-surface-variant text-base mt-2 max-w-md mx-auto">
+        Tactile physical interaction designed to calm your central nervous system.
+      </p>
+</div>
+<!-- Cascading Three-Phone Desktop Mockups -->
+<div class="relative w-full flex items-center justify-center gap-6 lg:gap-10 pt-4 pb-14 min-h-[700px]">
+<!-- LEFT PHONE: Morning Ritual / Journaling (Sage Palette, translate-y-12) -->
+<div class="hidden lg:flex flex-col justify-between w-[280px] h-[580px] bg-[#f2f6f2] border-4 border-white/80 rounded-[3rem] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.07)] p-4 transform translate-y-12 transition-transform hover:translate-y-8 duration-500 overflow-hidden relative">
+<!-- Top bar -->
+<div class="w-20 h-4 bg-black/10 rounded-full mx-auto flex items-center justify-center mb-2">
+<div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
+</div>
+<div class="flex justify-between items-center px-2 text-xs text-secondary">
+<span>08:15</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-xs">wifi</span>
+</div>
+</div>
+<!-- Left Screen Content: Morning Pages -->
+<div class="flex-1 flex flex-col items-center justify-center px-3 text-center my-4">
+<div class="w-12 h-12 rounded-full bg-[#dde4dd] flex items-center justify-center text-secondary mb-3 shadow-sm">
+<span class="material-symbols-outlined text-xl">stylus_note</span>
+</div>
+<p class="text-xs uppercase tracking-widest text-secondary font-semibold">Morning Pages</p>
+<h4 class="text-lg font-semibold text-[#161d19] mt-1">Linen Thoughts</h4>
+<p class="text-xs text-[#5f6661] mt-2 italic font-cursive text-xl leading-5">
+            "Today I will move slowly and allow myself stillness without guilt."
+          </p>
+<div class="mt-8 w-full bg-white/70 backdrop-blur-sm rounded-2xl p-3 shadow-xs text-left">
+<span class="text-[10px] uppercase font-bold text-secondary tracking-wider">Unfinished Thought</span>
+<p class="text-xs text-on-surface mt-1">Sunlight filtering through the curtains feels warm today...</p>
+</div>
+</div>
+<!-- Mini bottom nav -->
+<div class="bg-white/80 rounded-full p-2 flex justify-around items-center">
+<span class="material-symbols-outlined text-secondary text-lg">home</span>
+<span class="material-symbols-outlined text-primary text-lg">edit_note</span>
+<span class="material-symbols-outlined text-secondary text-lg">music_note</span>
+</div>
+</div>
+<!-- CENTER PHONE: The Core Interactive Breathing Sanctuary (300x620px, fully interactive) -->
+<div class="w-[300px] h-[620px] bg-white border-4 border-white rounded-[3.2rem] shadow-[0_25px_60px_-12px_rgba(135,79,76,0.18)] p-5 flex flex-col justify-between relative z-20 overflow-hidden">
+<!-- Phone Speaker Pill / Notch -->
+<div class="w-20 h-4 bg-surface-container-highest rounded-full mx-auto flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-outline-variant/60"></div>
+</div>
+<!-- Phone Top Bar -->
+<div class="flex justify-between items-center px-2 mt-2">
+<span class="text-xs font-semibold text-on-surface-variant">09:41</span>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">wifi</span>
+<span class="material-symbols-outlined text-sm">battery_full</span>
+</div>
+</div>
+<!-- App Screen Inside: Interactive Breathing Ring -->
+<div class="flex-1 flex flex-col items-center justify-center my-4 text-center px-2">
+<p class="text-xs text-secondary uppercase tracking-widest mb-1 font-semibold">Evening Unwind</p>
+<p class="text-2xl font-semibold text-on-surface tracking-tight" id="breath-label">Inhale slowly...</p>
+<!-- Organic Breathing Sphere -->
+<div class="relative my-8 flex items-center justify-center">
+<!-- Pulsing outer ripples -->
+<div class="absolute w-48 h-48 rounded-full bg-[#ffb7b2]/30 transition-transform duration-1000 ease-in-out scale-110" id="ring-outer"></div>
+<div class="absolute w-36 h-36 rounded-full bg-[#dde4dd]/60 transition-transform duration-1000 ease-in-out scale-100" id="ring-mid"></div>
+<!-- Central interactive button -->
+<button class="relative z-10 w-28 h-28 rounded-full bg-[#ffb7b2] text-[#7b4542] shadow-[0_8px_24px_rgba(255,183,178,0.7)] flex flex-col items-center justify-center active:scale-95 transition-transform cursor-pointer group" id="breath-btn">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">air</span>
+<span class="text-xs font-bold tracking-wider uppercase mt-0.5">Breathe</span>
+</button>
+</div>
+<!-- Gentle tactile feedback counter -->
+<div class="flex items-center gap-2 bg-[#f5ecea] px-4 py-1.5 rounded-full text-on-surface-variant text-xs shadow-xs">
+<span class="material-symbols-outlined text-primary text-base">favorite</span>
+<span class="font-medium" id="breath-count">3 of 5 mindful breaths</span>
+</div>
+</div>
+<!-- In-App Dock -->
+<div class="bg-[#efe6e4] rounded-full p-2 flex justify-around items-center">
+<button class="p-2 text-primary rounded-full bg-white shadow-xs">
+<span class="material-symbols-outlined text-xl">self_improvement</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-xl">auto_stories</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-xl">graphic_eq</span>
+</button>
+</div>
+</div>
+<!-- RIGHT PHONE: Bedtime Soundscapes / Meditation (Lavender Palette, translate-y-24) -->
+<div class="hidden lg:flex flex-col justify-between w-[280px] h-[580px] bg-[#f5f4f8] border-4 border-white/80 rounded-[3rem] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.07)] p-4 transform translate-y-24 transition-transform hover:translate-y-20 duration-500 overflow-hidden relative">
+<!-- Top bar -->
+<div class="w-20 h-4 bg-black/10 rounded-full mx-auto flex items-center justify-center mb-2">
+<div class="w-2.5 h-2.5 rounded-full bg-black/20"></div>
+</div>
+<div class="flex justify-between items-center px-2 text-xs text-tertiary">
+<span>10:45</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">dark_mode</span>
+<span class="material-symbols-outlined text-xs">battery_full</span>
+</div>
+</div>
+<!-- Right Screen Content: Soundscape Player -->
+<div class="flex-1 flex flex-col items-center justify-center px-3 text-center my-4">
+<div class="w-16 h-16 rounded-3xl bg-[#e3e1e8] flex items-center justify-center text-tertiary mb-3 shadow-inner">
+<span class="material-symbols-outlined text-3xl">nights_stay</span>
+</div>
+<p class="text-xs uppercase tracking-widest text-tertiary font-semibold">Soundscape</p>
+<h4 class="text-lg font-semibold text-on-surface mt-1">Rain on Kyoto Leaves</h4>
+<p class="text-xs text-on-surface-variant mt-1">432Hz ambient binaural drift</p>
+<!-- Waveform illustration -->
+<div class="flex items-center gap-1.5 justify-center mt-6 h-8">
+<div class="w-1 h-3 bg-tertiary rounded-full animate-pulse"></div>
+<div class="w-1 h-6 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.15s"></div>
+<div class="w-1 h-8 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.3s"></div>
+<div class="w-1 h-5 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.45s"></div>
+<div class="w-1 h-7 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+<div class="w-1 h-4 bg-tertiary rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
+</div>
+<div class="mt-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-tertiary cursor-pointer">skip_previous</span>
+<div class="w-10 h-10 rounded-full bg-white text-on-surface flex items-center justify-center shadow-xs cursor-pointer">
+<span class="material-symbols-outlined text-xl">pause</span>
+</div>
+<span class="material-symbols-outlined text-tertiary cursor-pointer">skip_next</span>
+</div>
+</div>
+<!-- Mini bottom nav -->
+<div class="bg-white/80 rounded-full p-2 flex justify-around items-center">
+<span class="material-symbols-outlined text-tertiary text-lg">self_improvement</span>
+<span class="material-symbols-outlined text-tertiary text-lg">auto_stories</span>
+<span class="material-symbols-outlined text-primary text-lg">graphic_eq</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Diary Entry Testimonials (2-Column Desktop Grid with Physical Tilt) -->
+<section class="py-20 px-8 max-w-5xl mx-auto w-full" id="stories">
+<div class="text-center mb-14">
+<h2 class="text-3xl lg:text-4xl font-semibold tracking-tight text-on-surface">Notes from the living room</h2>
+<p class="text-secondary font-cursive text-2xl lg:text-3xl mt-1">unfiltered daily journals</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+<!-- Diary Card 1 (Tilted +1deg) -->
+<div class="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgba(41,37,36,0.05)] transform md:rotate-1 hover:rotate-0 transition-transform duration-300 border border-black/[0.03] flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-xl">format_quote</span>
+<span class="text-xs uppercase tracking-wider text-secondary font-semibold">Logged from Seattle</span>
+</div>
+<p class="text-base lg:text-lg text-on-surface leading-relaxed font-normal">
+            "I replaced my impulsive 11 PM Instagram habit with Softy's 4-minute soft wind meditation. My sleep score jumped, but more importantly, my mind finally stopped buzzing after hours behind blue light."
+          </p>
+</div>
+<div class="mt-8 pt-4 flex items-center gap-3 border-t border-[#f5ecea]">
+<div class="w-8 h-0.5 bg-outline-variant"></div>
+<span class="text-on-surface-variant font-cursive text-3xl">— Maya L., Product Designer</span>
+</div>
+</div>
+<!-- Diary Card 2 (Tilted -1deg) -->
+<div class="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgba(41,37,36,0.05)] transform md:-rotate-1 hover:rotate-0 transition-transform duration-300 border border-black/[0.03] flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-xl">nature_people</span>
+<span class="text-xs uppercase tracking-wider text-secondary font-semibold">Logged from Kyoto</span>
+</div>
+<p class="text-base lg:text-lg text-on-surface leading-relaxed font-normal">
+            "The tactile haptics and pastel breathing circle make taking a break feel like wrapping myself in a warm linen blanket. It's the only digital wellness space that doesn't feel like homework or productivity punishment."
+          </p>
+</div>
+<div class="mt-8 pt-4 flex items-center gap-3 border-t border-[#f5ecea]">
+<div class="w-8 h-0.5 bg-outline-variant"></div>
+<span class="text-on-surface-variant font-cursive text-3xl">— Julian K., Architecture Student</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Interactive FAQ Accordion (max-w-3xl Desktop Container) -->
+<section class="py-20 px-6 max-w-3xl mx-auto w-full" id="faq">
+<div class="text-center mb-12">
+<p class="text-xs font-semibold text-secondary uppercase tracking-widest">Everything you may wonder</p>
+<h2 class="text-3xl lg:text-4xl font-semibold tracking-tight text-on-surface mt-1">Common curiosities</h2>
+</div>
+<div class="bg-white rounded-3xl shadow-sm border border-black/[0.03] p-4 flex flex-col gap-2">
+<!-- FAQ 1 -->
+<div class="faq-item rounded-2xl overflow-hidden hover:bg-[#FDFCF8]/60 transition-colors">
+<button class="faq-btn w-full p-5 text-left flex justify-between items-center cursor-pointer">
+<span class="text-base lg:text-lg text-on-surface font-semibold pr-4">How is Softy different from other meditation apps?</span>
+<span class="faq-icon material-symbols-outlined text-on-surface-variant transition-transform duration-300">add</span>
+</button>
+<div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5 text-on-surface-variant text-[15px] leading-relaxed">
+<p class="pb-5">
+            Softy isn't a productivity tracker or a library of endless 45-minute lectures. It is an intentional sanctuary designed with tactile visuals, micro-rituals, and zero guilt streaks. No badges, no notifications, and no performance pressure.
+          </p>
+</div>
+</div>
+<!-- FAQ 2 -->
+<div class="faq-item rounded-2xl overflow-hidden hover:bg-[#FDFCF8]/60 transition-colors">
+<button class="faq-btn w-full p-5 text-left flex justify-between items-center cursor-pointer">
+<span class="text-base lg:text-lg text-on-surface font-semibold pr-4">Is it really 100% ad-free and privacy-focused?</span>
+<span class="faq-icon material-symbols-outlined text-on-surface-variant transition-transform duration-300">add</span>
+</button>
+<div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5 text-on-surface-variant text-[15px] leading-relaxed">
+<p class="pb-5">
+            Always. We respect your nervous system and your sacred personal space. No flashing banners, no commercial interruptions, no behavioral analytics tracking, and zero algorithmic rabbit holes.
+          </p>
+</div>
+</div>
+<!-- FAQ 3 -->
+<div class="faq-item rounded-2xl overflow-hidden hover:bg-[#FDFCF8]/60 transition-colors">
+<button class="faq-btn w-full p-5 text-left flex justify-between items-center cursor-pointer">
+<span class="text-base lg:text-lg text-on-surface font-semibold pr-4">Can I use it offline while traveling or off-grid?</span>
+<span class="faq-icon material-symbols-outlined text-on-surface-variant transition-transform duration-300">add</span>
+</button>
+<div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5 text-on-surface-variant text-[15px] leading-relaxed">
+<p class="pb-5">
+            Yes, completely. All your favorite breathing tempos, tactile rhythms, and ambient acoustic soundscapes are stored locally on your device for airplanes, retreats, or quiet nights with airplane mode turned on.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Waitlist Conversion Section (Expansive Dark Stone #292524 Container, max-w-5xl) -->
+<section class="py-16 px-6 max-w-5xl mx-auto w-full mb-16" id="waitlist">
+<div class="bg-[#292524] text-white rounded-[2.5rem] p-10 md:p-16 shadow-2xl relative overflow-hidden text-center">
+<!-- Ambient internal glows -->
+<div class="absolute -top-20 -right-20 w-80 h-80 bg-[#ffb7b2] rounded-full blur-[100px] opacity-25 pointer-events-none"></div>
+<div class="absolute -bottom-20 -left-20 w-80 h-80 bg-[#dde4dd] rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+<!-- Glowing Coral Pin Dot -->
+<div class="w-14 h-14 rounded-2xl bg-white/10 mx-auto flex items-center justify-center mb-6 shadow-inner backdrop-blur-md">
+<span class="w-4 h-4 rounded-full bg-[#ffb7b2] shadow-[0_0_16px_#ffb7b2]"></span>
+</div>
+<h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-[#fff8f6]">Step into the living room.</h2>
+<p class="text-base md:text-lg text-white/70 mt-3 max-w-lg mx-auto">
+        Join 14,000+ early wanderers embracing a more delicate digital rhythm.
+      </p>
+<!-- Desktop-Optimized Inline Email Form -->
+<form class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto" id="waitlist-form" onsubmit="event.preventDefault(); document.getElementById('waitlist-success').classList.remove('hidden'); this.classList.add('hidden');">
+<input class="w-full sm:flex-1 bg-white/10 text-white placeholder:text-white/40 rounded-full px-6 py-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#ffb7b2] border border-white/10 transition-all text-center sm:text-left" placeholder="your.cozy.email@gmail.com" required="" type="email"/>
+<button class="w-full sm:w-auto bg-[#ffb7b2] text-[#7b4542] hover:bg-[#ffc5c1] font-semibold text-sm px-7 py-4 rounded-full shadow-lg active:scale-95 transition-all whitespace-nowrap" type="submit">
+          Claim my early invitation
+        </button>
+</form>
+<!-- Success Feedback State -->
+<div class="hidden mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center max-w-md mx-auto" id="waitlist-success">
+<p class="text-base text-[#ffb7b2] font-semibold">You're warmly on the list!</p>
+<p class="text-sm text-white/80 mt-1">We'll send a quiet note to your inbox soon.</p>
+</div>
+<p class="text-white/40 text-xs mt-6">
+        No spam. Just gentle invitations.
+      </p>
+</div>
+</section>
+<!-- 8. Minimal Warm Desktop Footer -->
+<footer class="pb-14 pt-6 px-8 text-center max-w-5xl mx-auto w-full border-t border-black/[0.04]">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-[#ffb7b2] flex items-center justify-center shadow-xs">
+<div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+</div>
+<span class="font-semibold text-base text-on-surface">softy</span>
+</div>
+<div class="flex items-center gap-6 text-xs text-on-surface-variant">
+<a class="hover:text-on-surface transition-colors" href="#">Privacy Sanctuary</a>
+<a class="hover:text-on-surface transition-colors" href="#">Manifesto</a>
+<a class="hover:text-on-surface transition-colors" href="#">Sound Library</a>
+<a class="hover:text-on-surface transition-colors" href="#">Contact Us</a>
+</div>
+<p class="text-xs text-on-surface-variant/70">
+        Handcrafted with care for tired minds. © 2025 Softy Studio.
+      </p>
+</div>
+</footer>
+<script>
+    // FAQ accordion micro-interaction
+    document.querySelectorAll('.faq-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+        const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        // Reset other FAQ items
+        document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
+        document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+
+        if (!isExpanded) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          icon.style.transform = 'rotate(45deg)';
+        }
+      });
+    });
+
+    // Interactive Breathing Exercise inside mock-up
+    const breathBtn = document.getElementById('breath-btn');
+    const ringOuter = document.getElementById('ring-outer');
+    const ringMid = document.getElementById('ring-mid');
+    const breathLabel = document.getElementById('breath-label');
+    const breathCount = document.getElementById('breath-count');
+
+    let isInhaling = true;
+    let cycles = 3;
+
+    if (breathBtn) {
+      breathBtn.addEventListener('click', () => {
+        isInhaling = !isInhaling;
+        if (isInhaling) {
+          breathLabel.textContent = "Inhale softly...";
+          ringOuter.style.transform = "scale(1.25)";
+          ringMid.style.transform = "scale(1.15)";
+        } else {
+          cycles++;
+          breathLabel.textContent = "Exhale peace...";
+          ringOuter.style.transform = "scale(0.85)";
+          ringMid.style.transform = "scale(0.9)";
+          if (breathCount) breathCount.textContent = `${cycles} mindful breaths taken`;
+        }
+      });
+    }
+  </script>
+</body></html>
